@@ -260,6 +260,37 @@ Think of it like **mobile data on a prepaid SIM**:
 
 ---
 
+## Switching back to default Claude Code
+
+If you want to stop using the proxy and go back to normal Claude Code (talking directly to Anthropic), just unset the two env vars before starting `claude`.
+
+**Git Bash / Linux / Mac:**
+```bash
+unset ANTHROPIC_API_KEY
+unset ANTHROPIC_BASE_URL
+claude
+```
+
+**Windows PowerShell:**
+```powershell
+Remove-Item Env:ANTHROPIC_API_KEY
+Remove-Item Env:ANTHROPIC_BASE_URL
+claude
+```
+
+Without `ANTHROPIC_BASE_URL` set, Claude Code goes back to talking directly to `https://api.anthropic.com` with your real Anthropic account — completely normal behavior, no proxy involved.
+
+To switch back to proxy mode anytime:
+```bash
+export ANTHROPIC_API_KEY="dummy"
+export ANTHROPIC_BASE_URL="http://localhost:3456"
+claude
+```
+
+You can freely switch between the two depending on whether you want to use your real Anthropic quota or route through Puter.
+
+---
+
 ## License
 
 MIT
